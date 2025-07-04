@@ -10,7 +10,9 @@ export class Renderer {
 
     renderPlanet(planet: Planet): void {
         this.context.beginPath()
+        this.context.fillStyle = planet.color
         this.context.arc(planet.position.x, planet.position.y, planet.radius, 0, 2 * Math.PI);
+        this.context.fill();
         this.context.stroke();
     }
 

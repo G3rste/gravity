@@ -2,6 +2,7 @@ import { Vec2d } from "./vec2d";
 export class Planet {
     constructor(
         public radius: number,
+        public color: string,
         public weight: number,
         public position: Vec2d,
         public direction: Vec2d,
@@ -14,7 +15,7 @@ export class Planet {
 
     public applyGravity(planet: Planet): void {
         const gravityVector = planet.position.diff(this.position).normalize();
-        const gravity = 0.1;
+        const gravity = planet.weight;
         gravityVector.x*=gravity;
         gravityVector.y*=gravity;
 
