@@ -10,10 +10,12 @@
     "test": "test",
     "lint": "eslint",
     "build": "webpack",
+    "prettier": "prettier . --write",
     "clean": "tsc --clean"
   },
   "dependencies": {
-    "eslint": "^9.30.1"
+    "eslint": "^9.30.1",
+    "prettier": "^3.6.2"
   },
   "devDependencies": {
     "ts-loader": "^9.5.2",
