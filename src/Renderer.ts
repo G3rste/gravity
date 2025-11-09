@@ -1,4 +1,7 @@
+import { Arena } from "./arena";
+import { Bullet } from "./bullet";
 import { Planet } from "./planet";
+import { Player } from "./player";
 
 export class Renderer {
   private readonly canvas: HTMLCanvasElement;
@@ -8,13 +11,34 @@ export class Renderer {
     this.context = this.canvas.getContext("2d") as CanvasRenderingContext2D;
   }
 
-  renderPlanet(planet: Planet): void {
+  
+  renderFrame(arena: Arena) {
+    this.clear();
+    this.renderPlayer(arena.player);
+    arena.bullets.forEach(bullet => this.renderBullet(bullet))
+  }
+
+  renderPlayer(player: Player): void {
     this.context.beginPath();
-    this.context.fillStyle = planet.color;
+    this.context.fillStyle = 'green';
     this.context.arc(
-      planet.position.x,
-      planet.position.y,
-      planet.radius,
+      player.pos.x,
+      player.pos.y,
+      player.size,
+      0,
+      2 * Math.PI,
+    );
+    this.context.fill();
+    this.context.stroke();
+  }
+
+  renderBullet(bullet: Bullet){
+    this.context.beginPath();
+    this.context.fillStyle = 'red';
+    this.context.arc(
+      bullet.pos.x,
+      bullet.pos.y,
+      bullet.size,
       0,
       2 * Math.PI,
     );

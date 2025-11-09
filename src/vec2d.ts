@@ -2,7 +2,7 @@ export class Vec2d {
   constructor(
     public x: number,
     public y: number,
-  ) {}
+  ) { }
 
   public normalize(): Vec2d {
     const xSign = Math.sign(this.x);
@@ -26,6 +26,26 @@ export class Vec2d {
   }
 
   public add(vec2d: Vec2d): Vec2d {
+    this.x += vec2d.x;
+    this.y += vec2d.y;
+    return this;
+  }
+
+  public addCopy(vec2d: Vec2d): Vec2d {
     return new Vec2d(this.x + vec2d.x, this.y + vec2d.y);
+  }
+
+  public mul(factor: number): Vec2d {
+    this.x *= factor;
+    this.y *= factor;
+    return this;
+  }
+
+  public mulCopy(factor: number): Vec2d {
+    return new Vec2d(this.x * factor, this.y * factor);
+  }
+
+  public clone(): Vec2d {
+    return new Vec2d(this.x, this.y);
   }
 }
